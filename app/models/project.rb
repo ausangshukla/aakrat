@@ -15,6 +15,7 @@ class Project < ApplicationRecord
 
   has_many :notes, as: :owner, dependent: :destroy
   has_rich_text :details
+  has_many_attached :profile_pics, service: :amazon, dependent: :destroy
 
   validates :name, :start_date, :end_date, :client_estimated_budget,
             :estimated_builtup_area, presence: true

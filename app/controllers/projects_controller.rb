@@ -124,6 +124,6 @@ class ProjectsController < ApplicationController
                                     :actual_cost, :fees, :per_sq_ft_rate, :percentage_of_estimated_budget,
                                     :percentage_completed, :status, :company_id, :details, :entity_name,
                                     :project_type, :scale, :style, :pattern, :address, :discount,
-                                    :fee_type, :details, services: [])
+                                    :fee_type, :details, services: [], profile_pics: [])
   end
 end

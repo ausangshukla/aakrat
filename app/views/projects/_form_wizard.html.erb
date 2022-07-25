@@ -102,6 +102,12 @@
                         <%= form.select :services, ENV["SERVICES"].split(","), {include_blank: false, include_hidden: false}, 
                             class: "form-control select2", multiple: "multiple", required: true  %>
                       </div>
+
+                      <div class="field" class="form-group" data-controller="directuploads" >
+                        <%= form.label :profile_pics %>
+                        <%= form.file_field :profile_pics, class: "form-control", direct_upload: true, multiple:true %>
+                        <small class="text-muted"> Upload multiple images. </small>
+                      </div>
                     
                     <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
                     </div>

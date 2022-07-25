@@ -409,3 +409,15 @@ table {
     text-align: center;
   }
 }
+
+#profile_pics_carousel {
+  .carousel-item {
+    
+    img {
+      margin: auto;
+      max-height: 300px;
+      width:100%;
+      object-fit: contain;
+    }
+  }
+}
