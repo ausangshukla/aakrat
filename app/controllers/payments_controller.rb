@@ -15,9 +15,9 @@ class PaymentsController < ApplicationController
   # GET /payments/new
   def new
     @payment = Payment.new(payment_params)
-    @payment.company_id = current_user.company_id
     @payment.due_date = Time.zone.today
     @payment.user_id = current_user.id
+    @payment.company_id = @payment.project.company_id
     if @payment.phase
       @payment.due_date = @payment.phase.end_date + 1.week
       @payment.amount = @payment.phase.due_amount
@@ -33,8 +33,8 @@ class PaymentsController < ApplicationController
   # POST /payments or /payments.json
   def create
     @payment = Payment.new(payment_params)
-    @payment.company_id = current_user.company_id
     @payment.user_id = current_user.id
+    @payment.company_id = @payment.project.company_id
     @payment.amount_cents = payment_params[:amount].to_d * 100
 
     authorize @payment
@@ -52,7 +52,6 @@ class PaymentsController < ApplicationController
 
   # PATCH/PUT /payments/1 or /payments/1.json
   def update
-    @payment.company_id = current_user.company_id
     @payment.user_id = current_user.id
     respond_to do |format|
       if @payment.update(payment_params)

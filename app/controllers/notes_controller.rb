@@ -16,7 +16,7 @@ class NotesController < ApplicationController
   def new
     @note = Note.new(note_params)
     @note.user_id = current_user.id
-    @note.company_id = current_user.company_id
+    @note.company_id = @note.owner.company_id
     authorize @note
   end
 
@@ -27,7 +27,7 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     @note.user_id = current_user.id
-    @note.company_id = current_user.company_id
+    @note.company_id = @note.owner.company_id
     authorize @note
 
     respond_to do |format|
@@ -44,6 +44,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1 or /notes/1.json
   def update
     respond_to do |format|
+      @note.user_id = current_user.id
       if @note.update(note_params)
         format.html { redirect_to note_url(@note), notice: "Note was successfully updated." }
         format.json { render :show, status: :ok, location: @note }

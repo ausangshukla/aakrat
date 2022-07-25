@@ -48,4 +48,9 @@ class NotePolicy < ApplicationPolicy
   def destroy?
     update?
   end
+
+  def permissions
+    project_id = record.owner_type == "Project" ? record.owner.id : record.owner.project_id
+    ProjectAccess.where(user_id: user.id, project_id:).first&.permissions
+  end
 end
