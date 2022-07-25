@@ -12,8 +12,8 @@ class QuotesController < ApplicationController
   # GET /quotes/new
   def new
     @quote = Quote.new(quote_params)
-    @quote.company_id = current_user.company_id
     @quote.user_id = current_user.id
+    @quote.company_id = @quote.client.company_id
 
     authorize @quote
   end
@@ -24,8 +24,8 @@ class QuotesController < ApplicationController
   # POST /quotes or /quotes.json
   def create
     @quote = Quote.new(quote_params)
-    @quote.company_id = current_user.company_id
     @quote.user_id = current_user.id
+    @quote.company_id = @quote.client.company_id
     authorize @quote
 
     respond_to do |format|
