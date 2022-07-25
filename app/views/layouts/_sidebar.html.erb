@@ -64,7 +64,19 @@
 
             <% end %>
             
-            
+            <% if current_user && current_user.has_cached_role?(:accountant) %>
+
+                <li class="nav-item">
+
+                    <a class="nav-link collapsed" href="/payments">
+                        <i class="fas fa-fw fa-dollar"></i>
+                        <span>Payments</span>
+                    </a>
+
+                </li>
+
+            <% end %>
+
             <% if current_user && current_user.has_cached_role?(:team_lead) %>
 
             <li class="nav-item">
