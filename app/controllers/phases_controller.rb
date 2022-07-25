@@ -12,10 +12,10 @@ class PhasesController < ApplicationController
   # GET /phases/new
   def new
     @phase = Phase.new(phase_params)
-    @phase.company_id = current_user.company_id
     @phase.project_id ||= params[:project_id]
     @phase.start_date = Time.zone.today
     @phase.end_date = Time.zone.today + 10.days
+    @phase.company_id = @phase.project.company_id
     authorize @phase
   end
 
@@ -25,7 +25,7 @@ class PhasesController < ApplicationController
   # POST /phases or /phases.json
   def create
     @phase = Phase.new(phase_params)
-    @phase.company_id = current_user.company_id
+    @phase.company_id = @phase.project.company_id
     authorize @phase
 
     respond_to do |format|

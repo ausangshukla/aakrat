@@ -19,7 +19,7 @@ class StepsController < ApplicationController
   # GET /steps/new
   def new
     @step = Step.new(step_params)
-    @step.company_id = current_user.company_id
+    @step.company_id = @step.project.company_id
     authorize @step
   end
 
@@ -29,7 +29,7 @@ class StepsController < ApplicationController
   # POST /steps or /steps.json
   def create
     @step = Step.new(step_params)
-    @step.company_id = current_user.company_id
+    @step.company_id = @step.project.company_id
     authorize @step
 
     respond_to do |format|

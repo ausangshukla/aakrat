@@ -15,7 +15,7 @@ class AttachmentsController < ApplicationController
   # GET /attachments/new
   def new
     @attachment = Attachment.new(attachment_params)
-    @attachment.company_id = current_user.company_id
+    @attachment.company_id = @attachment.project.company_id
     @attachment.attached_by_id = current_user.id
     authorize @attachment
   end
@@ -28,10 +28,10 @@ class AttachmentsController < ApplicationController
   # POST /attachments or /attachments.json
   def create
     @attachment = Attachment.new(attachment_params)
-    @attachment.company_id      = current_user.company_id
-    @attachment.attached_by_id  = current_user.id
     @attachment.project_id  ||= @attachment.step.project_id
     @attachment.phase_id    ||= @attachment.step.phase_id
+    @attachment.company_id = @attachment.project.company_id
+    @attachment.attached_by_id = current_user.id
     authorize @attachment
 
     respond_to do |format|

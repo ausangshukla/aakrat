@@ -34,7 +34,7 @@
 
   <div class="form-group">
     <%= form.label :assigned_to_id %>
-    <%= form.select :assigned_to_id, current_user.company.users.team_members.map{|u| [u.full_name, u.id]}, {}, class: "form-control"  %>
+    <%= form.select :assigned_to_id, step.company.users.team_members.map{|u| [u.full_name, u.id]}, {}, class: "form-control"  %>
   </div>
 
 
