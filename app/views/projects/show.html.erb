@@ -264,6 +264,15 @@
       </tr>
       <% end %>
 
+      <tr class="collapse multi-collapse">
+        <td>
+          Profle Pics
+        </td>
+        <td>
+          <%= render "/layouts/attachments", attachments: @project.profile_pics %>
+        </td>
+      </tr>
+
   </table>
 
   <div>
