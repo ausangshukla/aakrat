@@ -32,7 +32,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-      user.id == record.id ||
+    user.id == record.id ||
       (user.company_id == record.company_id && user.has_cached_role?(:team_lead))
   end
 

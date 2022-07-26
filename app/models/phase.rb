@@ -37,7 +37,11 @@ class Phase < ApplicationRecord
 
   def set_completed
     self.completed = total_days.positive? && total_days == completed_days
-    self.status = "Completed" if completed
+    if completed
+      self.status = "Completed"
+    else
+      self.status = "In Progress" unless ["Halted", "Client Review"].include?(status)
+    end
   end
 
   def set_payment_status

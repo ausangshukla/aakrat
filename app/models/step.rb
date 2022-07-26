@@ -40,7 +40,7 @@ class Step < ApplicationRecord
                   delta_column: 'days'
 
   after_update ->(_s) { StepMailer.with(step_id: id).notify_update.deliver_later if project.status == "In Progress" }
-  after_save ->(s) { PhaseCompletedJob.perform_later(s.phase_id) if s.completed }
+  after_commit ->(s) { PhaseCompletedJob.perform_later(s.phase_id) }
 
   def set_end_date
     self.end_date = start_date + days.days

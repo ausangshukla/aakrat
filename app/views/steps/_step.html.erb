@@ -46,7 +46,7 @@
     <%= step.status %>    
   </td>
 
-  <% if @phase && policy(@phase.project).action? %>
+  <% if policy(step.project).action? %>
     <td>
       <%= step.assigned_to.full_name %>
     </td>
@@ -58,7 +58,7 @@
     <% end %>
   </td>
   
-  <% if @phase && policy(@phase.project).action? %>
+  <% if policy(step.project).action? %>
   
     <td>
       <% if policy(step).update? %>

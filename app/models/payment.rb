@@ -51,7 +51,7 @@ class Payment < ApplicationRecord
   def set_status
     self.status = "Overdue" if Time.zone.today > due_date && status == "Pending"
 
-    self.received_on = Time.zone.now if status_changed? && (status == "Received" || status == "Confirmed")
+    self.received_on ||= Time.zone.now if status_changed? && (status == "Received" || status == "Confirmed")
   end
 
   def overdue?
