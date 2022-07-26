@@ -1,6 +1,6 @@
 <%= render "/layouts/alerts" %>
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1>Project: <%= link_to @phase.project.name, @phase.project %></h1>
+    <h1> <%= link_to @phase.project.name, @phase.project %> : <%= @phase.name %></h1>
   </div>
 
   <table class="table table-bordered dataTable">
@@ -125,7 +125,7 @@
 
       <tr class="collapse multi-collapse">
         <td>
-          Payment Due
+          Total Payment 
         </td>
         <td>
           <%= money_to_currency @phase.payment_due, params %>
@@ -139,6 +139,17 @@
         </td>
         <td>
           <%= money_to_currency @phase.payment_amount, params %>
+        </td>
+      </tr>
+
+      <tr class="collapse multi-collapse">
+        <td>
+          Payment Pending
+        </td>
+        <td>
+          <%= money_to_currency @phase.due_amount, params %>
+          <%= link_to "Payment", new_payment_path("payment[phase_id]": @phase.id, 
+                "payment[project_id]": @phase.project_id), class: "btn-primary btn-sm" %>
         </td>
       </tr>
 

@@ -15,13 +15,10 @@ class PaymentsController < ApplicationController
   # GET /payments/new
   def new
     @payment = Payment.new(payment_params)
-    @payment.due_date = Time.zone.today
+    @payment.due_date = @payment.phase ? @payment.phase.end_date : Time.zone.today
     @payment.user_id = current_user.id
     @payment.company_id = @payment.project.company_id
-    if @payment.phase
-      @payment.due_date = @payment.phase.end_date + 1.week
-      @payment.amount = @payment.phase.due_amount
-    end
+    @payment.amount = @payment.phase.due_amount if @payment.phase
     authorize @payment
   end
 
