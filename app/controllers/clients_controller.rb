@@ -10,7 +10,7 @@ class ClientsController < ApplicationController
   end
 
   def search
-    @clients = Client.search("#{params[:term]}*", star: true, with: { company_id: current_user.company_id })
+    @clients = Client.search(params[:term].to_s, star: true, with: { company_id: current_user.company_id })
     Rails.logger.debug @clients.to_json
     render "index"
   end
