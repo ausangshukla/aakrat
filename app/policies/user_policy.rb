@@ -20,19 +20,19 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    user.has_cached_role?(:super) || user.id == record.id || user.company_id == record.company_id
+    user.id == record.id || user.company_id == record.company_id
   end
 
   def create?
-    user.has_cached_role?(:super) || user.company_id == record.company_id
+    user.has_cached_role?(:team_lead) && user.company_id == record.company_id
   end
 
   def new?
-    user.has_cached_role?(:super) || user.company_id == record.company_id
+    user.has_cached_role?(:team_lead) && user.company_id == record.company_id
   end
 
   def update?
-    user.has_cached_role?(:super) || user.id == record.id ||
+      user.id == record.id ||
       (user.company_id == record.company_id && user.has_cached_role?(:team_lead))
   end
 
