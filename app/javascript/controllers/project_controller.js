@@ -12,7 +12,6 @@ export default class extends Controller {
                 response: function (event, ui) {
                     console.log(ui.content);
                     if (ui.content.length == 0) {
-                        alert("No results found for this client name");
                         $("#project_client_name").val("");
                     }
                 },
