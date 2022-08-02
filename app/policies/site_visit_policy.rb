@@ -9,7 +9,7 @@ class SiteVisitPolicy < ApplicationPolicy
         scope.where(assigned_to_id: user.id)
       else
         scope.joins(project: :project_accesses)
-             .merge(ProjectAccess.where_permissions(:read_site_visit))
+             .merge(ProjectAccess.where_permissions(:read_site_visit).where("project_accesses.user_id=?", user.id))
       end
     end
   end

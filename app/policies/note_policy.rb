@@ -6,7 +6,8 @@ class NotePolicy < ApplicationPolicy
       elsif user.has_cached_role?(:team_lead) || user.has_cached_role?(:team_member)
         scope.where(company_id: user.company_id)
       else
-        scope.none
+        scope.joins(project: :project_accesses)
+             .merge(ProjectAccess.where_permissions(:read_note).where("project_accesses.user_id=?", user.id))
       end
     end
   end

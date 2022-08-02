@@ -6,7 +6,8 @@ class ProjectPolicy < ApplicationPolicy
       elsif user.has_cached_role?(:team_lead) || user.has_cached_role?(:team_member)
         scope.where(company_id: user.company_id)
       else
-        scope.joins(:project_accesses).where("project_accesses.user_id=?", user.id)
+        scope.joins(:project_accesses)
+             .merge(ProjectAccess.where_permissions(:read_project).where("project_accesses.user_id=?", user.id))
       end
     end
   end
@@ -60,6 +61,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def permissions
-    ProjectAccess.where(user_id: user.id, project_id: record.id).first&.permissions
+    @perms ||= ProjectAccess.where(user_id: user.id, project_id: record.id).first&.permissions
+    @perms
   end
 end

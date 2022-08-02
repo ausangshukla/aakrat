@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :record, :perms
 
   def initialize(user, record)
     raise Pundit::NotAuthorizedError, "Must be logged in" unless user
@@ -54,6 +54,7 @@ class ApplicationPolicy
   end
 
   def permissions
-    ProjectAccess.where(user_id: user.id, project_id: record.project_id).first&.permissions
+    @perms ||= ProjectAccess.where(user_id: user.id, project_id: record.project_id).first&.permissions
+    @perms
   end
 end
