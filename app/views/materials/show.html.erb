@@ -1,0 +1,130 @@
+<%= render "/layouts/alerts" %>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1>
+    <%= link_to @material.project.name, @material.project %> :
+    <%= link_to @material.owner.name, @material.owner if @material.owner %> 
+  </h1>
+</div>
+
+  <table class="table table-bordered dataTable">
+
+    <tr>
+      <td>
+        Company
+      </td>
+      <td>
+        <%= @material.company.name %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Project
+      </td>
+      <td>
+        <%= @material.project.name %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Owner
+      </td>
+      <td>
+        <%= @material.owner.name if @material.owner %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Category
+      </td>
+      <td>
+        <%= @material.category %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Item
+      </td>
+      <td>
+        <%= @material.item %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Material
+      </td>
+      <td>
+        <%= @material.material %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Description
+      </td>
+      <td>
+        <%= @material.description %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Quantity
+      </td>
+      <td>
+        <%= @material.quantity %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Unit Cost
+      </td>
+      <td>
+        <%= @material.unit_cost %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Cost
+      </td>
+      <td>
+        <%= @material.cost %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Required By Date
+      </td>
+      <td>
+        <%= @material.required_by_date %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Reminder Days Before
+      </td>
+      <td>
+        <%= @material.reminder_days_before %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Attachments
+      </td>
+      <td>
+        <ul>
+          <%= render "/layouts/attachments" , attachments: @material.attachments %>
+        </ul>
+
+      </td>
+    </tr>
+
+
+  </table>
+
+
+  <div>
+    <% if policy(@material).update? %>
+      <%= link_to "Edit" , edit_material_path(@material), {class: "btn btn-primary" } %> |
+      <%= button_to "Delete" , @material, method: :delete, class: "btn btn-danger" , form_class: "deleteButton" %>
+    <% end %>
+  </div>

@@ -14,6 +14,7 @@ class Phase < ApplicationRecord
   has_many :steps, dependent: :destroy
   has_many :payments, dependent: :delete_all
   has_many :attachments, dependent: :destroy
+  has_many :materials, as: :owner, dependent: :destroy
 
   has_rich_text :details
   monetize :payment_amount_cents, with_currency: ->(i) { i.project.currency }

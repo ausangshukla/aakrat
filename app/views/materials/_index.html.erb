@@ -1,0 +1,51 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Materials</h1>
+    <%= link_to "New Material", new_material_path("material[owner_id]": owner.id, "material[owner_type]": owner.class.name, "material[project_id]": owner.project_id  ), {class: "btn btn-primary"} if owner %>
+  </div>
+  
+  <div class="table-responsive">
+  
+    <table id="materials" class="table table-bordered dataTable jqDataTable">
+      <thead>
+        <tr>
+          <th>
+            For
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            Item
+          </th>
+          <th>
+            Material
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Quantity
+          </th>
+          <th>
+            Unit Cost
+          </th>
+          <th>
+            Cost
+          </th>
+          <th>
+            Required By Date
+          </th>
+         
+          <th>
+          </th>
+        </tr>
+      </thead>
+      
+      <tbody>
+      <% materials.each do |material| %>
+        <%= render material %>
+      <% end %>
+      </tbody>
+    </table>
+  
+  </div>

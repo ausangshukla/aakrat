@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_03_073731) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_03_160659) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -172,6 +172,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_073731) do
     t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
     t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", length: { message: 255 }
     t.index ["user_id"], name: "index_impressions_on_user_id"
+  end
+
+  create_table "materials", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.string "category", limit: 40
+    t.string "item", limit: 50
+    t.string "material", limit: 50
+    t.text "description"
+    t.integer "quantity", default: 0
+    t.decimal "unit_cost_cents", precision: 20, scale: 2, default: "0.0"
+    t.decimal "cost_cents", precision: 20, scale: 2, default: "0.0"
+    t.date "required_by_date"
+    t.integer "reminder_days_before"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_materials_on_company_id"
+    t.index ["owner_type", "owner_id"], name: "index_materials_on_owner"
+    t.index ["project_id"], name: "index_materials_on_project_id"
+    t.index ["user_id"], name: "index_materials_on_user_id"
   end
 
   create_table "notes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -448,6 +471,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_073731) do
   add_foreign_key "daily_activities", "projects"
   add_foreign_key "daily_activities", "steps"
   add_foreign_key "daily_activities", "users"
+  add_foreign_key "materials", "companies"
+  add_foreign_key "materials", "projects"
+  add_foreign_key "materials", "users"
   add_foreign_key "notes", "companies"
   add_foreign_key "notes", "users"
   add_foreign_key "payments", "companies"

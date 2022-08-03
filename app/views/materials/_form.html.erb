@@ -1,0 +1,73 @@
+<%= form_with(model: material) do |form| %>
+  <% if material.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(material.errors.count, "error") %> prohibited this material from being saved:</h2>
+
+      <ul>
+        <% material.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= form.text_field :company_id, class: "form-control", hidden: true  %>
+    <%= form.text_field :project_id, class: "form-control", hidden: true  %>
+    <%= form.text_field :owner_id, class: "form-control", hidden: true  %>
+    <%= form.text_field :owner_type, class: "form-control", hidden: true  %>
+  
+  <div class="form-group">
+    <%= form.label :category %>
+    <%= form.text_field :category, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :item %>
+    <%= form.text_field :item, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :material %>
+    <%= form.text_field :material, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :unit_cost %>
+    <%= form.text_field :unit_cost, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :cost %>
+    <%= form.text_field :cost, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :required_by_date %>
+    <%= form.date_field :required_by_date, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :reminder_days_before %>
+    <%= form.number_field :reminder_days_before, class: "form-control"  %>
+  </div>
+
+  <div class="field" class="form-group" data-controller="directuploads" >
+    <%= form.label :attachments, "Attachments" %>
+    <%= form.file_field :attachments, class: "form-control", direct_upload: true, multiple:true %>
+    <small class="text-muted"> Upload multiple attachments. </small>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "Save", {class: "btn btn-primary"}%>
+  </div>
+<% end %>

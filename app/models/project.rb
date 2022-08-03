@@ -12,6 +12,7 @@ class Project < ApplicationRecord
   has_many :payments, dependent: :destroy
   has_many :project_accesses, dependent: :destroy
   has_many :attachments, dependent: :destroy
+  has_many :materials, dependent: :destroy
 
   has_many :notes, as: :owner, dependent: :destroy
   has_rich_text :details

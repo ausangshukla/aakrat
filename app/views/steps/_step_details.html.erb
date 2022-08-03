@@ -15,6 +15,9 @@
             <a class="nav-link" data-bs-toggle="pill" data-toggle="tab" href="#activities-tab">Daily Activity</a>
         <% end %>
 
+        <% if policy(@step).update? || policy(@step).permissions&.read_material? %>
+            <a class="nav-link" data-bs-toggle="pill" data-toggle="tab" href="#materials-tab">Materials</a>
+        <% end %>
     </nav>
 
     <div class="tab-content">
@@ -46,6 +49,14 @@
                 </div>
             </div>
 
+        <% end %>
+
+        <% if policy(@step).update? || policy(@step).permissions&.read_material? %>
+            <div id="materials-tab" class="tab-pane fade">
+                <div id="materials" class="associated_entity">
+                    <%= render "/materials/index", materials: step.materials, owner: step %>
+                </div>
+            </div>
         <% end %>
 
     </div>

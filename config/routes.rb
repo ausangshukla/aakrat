@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :materials
   resources :daily_activities
   resources :quotes
   resources :attachments do

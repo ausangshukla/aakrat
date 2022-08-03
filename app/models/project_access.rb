@@ -5,7 +5,7 @@ class ProjectAccess < ApplicationRecord
   belongs_to :user
   belongs_to :project
 
-  flag :permissions, %i[read_project write_project read_step write_step read_phase write_phase read_payment write_payment read_site_visit write_site_visit read_note write_note read_quote write_quote read_attachment write_attachment read_daily_activity write_daily_activity]
+  flag :permissions, %i[read_project write_project read_step write_step read_phase write_phase read_payment write_payment read_site_visit write_site_visit read_note write_note read_material write_material read_attachment write_attachment read_daily_activity write_daily_activity]
 
   has_rich_text :details
 

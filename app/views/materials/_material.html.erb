@@ -1,0 +1,34 @@
+
+
+<tr id="<%= dom_id material %>">
+  <td>
+    <%= link_to material.owner.name, material.owner if material.owner  %>
+  </td>
+  <td>
+    <%= material.category %>
+  </td>
+  <td>
+    <%= material.item %>
+  </td>
+  <td>
+    <%= material.material %>
+  </td>
+  <td>
+    <%= material.description %>
+  </td>
+  <td>
+    <%= material.quantity %>
+  </td>
+  <td>
+    <%= material.unit_cost %>
+  </td>
+  <td>
+    <%= material.cost %>
+  </td>
+  <td>
+    <%= l material.required_by_date if material.required_by_date %>
+  </td>
+  <td>
+    <%= link_to "Show" , material , {class: "btn btn-primary" }%>
+  </td>
+</tr>

@@ -1,4 +1,19 @@
 FactoryBot.define do
+  factory :material do
+    company { nil }
+    project { nil }
+    owner { nil }
+    category { "MyString" }
+    item { "MyString" }
+    material { "MyString" }
+    description { "MyText" }
+    quantity { 1 }
+    unit_cost { "9.99" }
+    cost { "9.99" }
+    required_by_date { "2022-08-03" }
+    reminder_days_before { 1 }
+  end
+
   factory :daily_activity do
     user { nil }
     project { nil }

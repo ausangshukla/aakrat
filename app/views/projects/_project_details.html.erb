@@ -19,6 +19,10 @@
             <a class="nav-link" data-bs-toggle="pill" data-toggle="tab" href="#notes-tab">Notes</a>
         <% end %>
 
+        <% if policy(@project).update? || policy(@project).permissions&.read_material? %>
+            <a class="nav-link" data-bs-toggle="pill" data-toggle="tab" href="#materials-tab">Materials</a>
+        <% end %>
+
         <% if policy(@project).update? %>
             <a class="nav-link" data-bs-toggle="pill" data-toggle="tab" href="#accesses-tab">Access</a>
         <% end %>
@@ -53,6 +57,14 @@
             <div id="notes-tab" class="tab-pane fade">
                 <div id="notes" class="associated_entity">
                     <%= render "/notes/index", notes: project.notes.with_all_rich_text, owner: project %>
+                </div>
+            </div>
+        <% end %>
+
+        <% if policy(@project).update? || policy(@project).permissions&.read_material? %>
+            <div id="materials-tab" class="tab-pane fade">
+                <div id="materials" class="associated_entity">
+                    <%= render "/materials/index", materials: project.materials, owner: nil %>
                 </div>
             </div>
         <% end %>
