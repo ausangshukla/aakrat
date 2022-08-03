@@ -23,6 +23,8 @@ class Step < ApplicationRecord
 
   scope :visible_to_client, -> { where(visible_to_client: true) }
 
+  monetize :cost_cents, with_currency: ->(i) { i.project.currency }
+
   before_save :set_end_date
 
   counter_culture :phase,
