@@ -11,6 +11,10 @@
             <a class="nav-link" data-bs-toggle="pill" data-toggle="tab" href="#notes-tab">Notes</a>
         <% end %>
 
+        <% if policy(@step).update? || policy(@step).permissions&.read_daily_activity? %>
+            <a class="nav-link" data-bs-toggle="pill" data-toggle="tab" href="#activities-tab">Daily Activity</a>
+        <% end %>
+
     </nav>
 
     <div class="tab-content">
@@ -28,6 +32,17 @@
             <div id="notes-tab" class="tab-pane fade">
                 <div id="notes" class="associated_entity">
                     <%= render "/notes/index" , notes: step.notes %>
+                </div>
+            </div>
+
+        <% end %>
+
+        <% if policy(@step).update? || policy(@step).permissions&.read_daily_activity? %>
+
+            <div id="activities-tab" class="tab-pane fade">
+                <div id="daily_activities" class="associated_entity">
+                    <%= render "/daily_activities/index" , daily_activities: policy_scope(step.daily_activities),
+                                step: @step %>
                 </div>
             </div>
 

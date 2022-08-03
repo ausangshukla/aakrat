@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_19_050652) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_03_060812) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -121,6 +121,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_050652) do
     t.index ["deleted_at"], name: "index_companies_on_deleted_at"
     t.index ["name"], name: "index_companies_on_name", unique: true
     t.index ["parent_company_id"], name: "index_companies_on_parent_company_id"
+  end
+
+  create_table "daily_activities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
+    t.bigint "step_id", null: false
+    t.text "details"
+    t.string "status", limit: 15
+    t.decimal "cost_cents", precision: 20, scale: 2, default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_daily_activities_on_company_id"
+    t.index ["project_id"], name: "index_daily_activities_on_project_id"
+    t.index ["step_id"], name: "index_daily_activities_on_step_id"
+    t.index ["user_id"], name: "index_daily_activities_on_user_id"
   end
 
   create_table "exception_tracks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -359,7 +375,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_050652) do
   end
 
   create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", collation: "utf8_bin"
+    t.string "name", collation: "utf8mb3_bin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "taggings_count", default: 0
@@ -425,6 +441,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_050652) do
   add_foreign_key "attachments", "users", column: "attached_by_id"
   add_foreign_key "clients", "companies"
   add_foreign_key "clients", "users"
+  add_foreign_key "daily_activities", "companies"
+  add_foreign_key "daily_activities", "projects"
+  add_foreign_key "daily_activities", "steps"
+  add_foreign_key "daily_activities", "users"
   add_foreign_key "notes", "companies"
   add_foreign_key "notes", "users"
   add_foreign_key "payments", "companies"

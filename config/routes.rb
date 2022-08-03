@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :daily_activities
   resources :quotes
   resources :attachments do
     patch 'toggle_approval', on: :member

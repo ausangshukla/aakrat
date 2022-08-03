@@ -1,4 +1,13 @@
 FactoryBot.define do
+  factory :daily_activity do
+    user { nil }
+    project { nil }
+    step { nil }
+    details { "MyText" }
+    status { "MyString" }
+    cost { "9.99" }
+  end
+
   factory :quote do
     company { nil }
     user { nil }

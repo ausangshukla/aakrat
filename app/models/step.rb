@@ -13,6 +13,8 @@ class Step < ApplicationRecord
 
   has_many :client_attachments, class_name: "Attachment", dependent: :destroy
   has_many :notes, as: :owner, dependent: :destroy
+  has_many :daily_activities, dependent: :destroy
+
   has_rich_text :details
   has_many_attached :attachments, service: :amazon, dependent: :destroy
 

@@ -1,0 +1,40 @@
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Daily Activities</h1>
+    <% step ||= nil %>
+    <%= link_to "New Daily Activity", new_daily_activity_path("daily_activity[step_id]": step.id, 
+                "daily_activity[project_id]": step.project_id), {class: "btn btn-primary"} if step %>
+  </div>
+  
+  <div class="table-responsive">
+  
+    <table id="daily_activities" class="table table-bordered dataTable jqDataTable">
+  
+      <thead>
+        <tr>
+          <th>
+            User
+          </th>
+         <th>
+            Details
+          </th>
+          <th>
+            Status
+          </th>
+          <th>
+            Cost
+          </th>
+      
+          <th>
+          </th>
+        </tr>
+      </thead>
+  
+      <tbody>
+      <% daily_activities.each do |daily_activity| %>
+        <%= render daily_activity %>
+      <% end %>
+      </tbody>
+    </table>
+  
+  </div>
