@@ -11,6 +11,9 @@ class Client < ApplicationRecord
 
   validates :first_name, :last_name, :email, :phone, :user_type, presence: true
 
+  scope :contractors, -> { where(user_type: "Contractor") }
+  scope :clients, -> { where(user_type: "Client") }
+
   before_validation :set_user
   def set_user
     self.user = User.where(email:).first

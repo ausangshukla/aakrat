@@ -5,7 +5,7 @@
     <%= daily_activity.user.full_name %>
   </td>
   <td>
-    <%= daily_activity.details %>
+    <%= daily_activity.title %>
   </td>
   <td>
     <% badge_color = daily_activity.status == "Completed" ? "badge-success" : "badge-warning" %>
@@ -15,6 +15,9 @@
   </td>
   <td>
     <%= money_to_currency daily_activity.cost, params %>
+  </td>
+  <td>
+    <%= l daily_activity.on_date if daily_activity.on_date  %>
   </td>
   <td>
     <%= link_to "Show" , daily_activity , {class: "btn btn-primary" }%>

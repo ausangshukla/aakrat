@@ -1,5 +1,14 @@
 <%= render "/layouts/alerts" %>
 
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1>
+    <%= link_to @daily_activity.project.name, @daily_activity.project %> :
+    <%= link_to @daily_activity.step.phase.name, @daily_activity.step %> :
+    <%= link_to @daily_activity.step.name, @daily_activity.step %> :
+    <%= @daily_activity.title %>
+  </h1>
+</div>
+
   <table class="table table-bordered dataTable">
 
     <tr>
@@ -28,10 +37,28 @@
     </tr>
     <tr>
       <td>
+        Title
+      </td>
+      <td>
+        <%= @daily_activity.title %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
         Details
       </td>
       <td>
         <%= @daily_activity.details %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        On
+      </td>
+      <td>
+        <%= l @daily_activity.on_date if @daily_activity.on_date %>
       </td>
     </tr>
     <tr>

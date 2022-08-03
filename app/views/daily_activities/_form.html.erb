@@ -11,11 +11,27 @@
     </div>
   <% end %>
 
-    <%= form.text_field :user_id, class: "form-control", hidden: true  %>
     <%= form.text_field :project_id, class: "form-control", hidden: true  %>
     <%= form.text_field :step_id, class: "form-control", hidden: true  %>
 
+  <% if current_user.company_id == daily_activity.company_id %>
+    <div class="form-group">
+      <%= form.label :user_id, "Assigned To" %>
+      <%= form.select :user_id, daily_activity.company.clients.contractors.map{|c| [c.user.full_name, c.user_id]}, {}, class: "form-control"  %>
+    </div>
+  <% else %>
+    <%= form.text_field :user_id, class: "form-control", hidden: true  %>    
+  <% end %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control"  %>
+  </div>
 
+  <div class="form-group">
+    <%= form.label :on_date %>
+    <%= form.date_field :on_date, class: "form-control"  %>
+  </div>
+  
   <div class="form-group">
     <%= form.label :status %>
     <%= form.select :status, ["Completed", "In Progress", "Not Started"], {}, class: "form-control"  %>

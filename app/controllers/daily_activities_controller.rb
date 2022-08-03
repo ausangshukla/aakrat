@@ -13,7 +13,8 @@ class DailyActivitiesController < ApplicationController
   def new
     @daily_activity = DailyActivity.new(daily_activity_params)
     @daily_activity.company_id = @daily_activity.step.company_id
-    @daily_activity.user_id = current_user.id
+    @daily_activity.user_id = current_user.id if @daily_activity.company_id != current_user.company_id
+    @daily_activity.on_date = Time.zone.today
     authorize @daily_activity
   end
 
@@ -25,7 +26,7 @@ class DailyActivitiesController < ApplicationController
     @daily_activity = DailyActivity.new(daily_activity_params)
     @daily_activity.company_id = @daily_activity.step.company_id
     @daily_activity.project_id = @daily_activity.step.project_id
-    @daily_activity.user_id = current_user.id
+    @daily_activity.user_id = current_user.id if @daily_activity.company_id != current_user.company_id
     authorize @daily_activity
 
     respond_to do |format|
@@ -72,6 +73,7 @@ class DailyActivitiesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def daily_activity_params
-    params.require(:daily_activity).permit(:user_id, :company_id, :project_id, :step_id, :details, :status, :cost)
+    params.require(:daily_activity).permit(:user_id, :company_id, :project_id, :step_id,
+                                           :on_date, :title, :details, :status, :cost)
   end
 end
