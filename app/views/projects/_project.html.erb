@@ -35,5 +35,6 @@
   </td>
   <td>
     <%= link_to "Show" , project , {class: "btn btn-primary" }%>
+    <%= link_to "Edit" , edit_project_path(project), {class: "btn btn-success" } if policy(project).update? %>
   </td>
 </tr>

@@ -59,6 +59,8 @@ class Company < ApplicationRecord
   has_many :clients, dependent: :destroy
   has_many :attachments, dependent: :destroy
 
+  has_one_attached :logo, service: :amazon, dependent: :destroy
+
   TYPES = ["Architect"].freeze
 
   before_save :check_url

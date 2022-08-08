@@ -1,5 +1,9 @@
 <tr id="<%= dom_id site_visit %>">
   <td>
+    <%= link_to l(site_visit.scheduled_on), site_visit %>
+  </td>
+
+  <td>
     <%= link_to site_visit.project.name, site_visit.project %>
   </td>
   <td>
@@ -8,9 +12,7 @@
   <td>
     <%= money_to_currency site_visit.cost,params %>
   </td>
-  <td>
-    <%= l site_visit.scheduled_on %>
-  </td>
+  
   <td>
     <%= l site_visit.conducted_on if site_visit.conducted_on %>
   </td>

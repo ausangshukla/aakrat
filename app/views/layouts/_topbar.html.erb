@@ -51,7 +51,10 @@
 
       
                         <div class="topbar-divider "></div>
-
+                        <li class="nav-item dropdown no-arrow">
+                            <%= image_tag current_user.company.logo.url, class: "logo" if current_user.company.logo.present? %>
+                        </li>
+                        <div class="topbar-divider "></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"

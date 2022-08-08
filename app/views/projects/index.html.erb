@@ -20,7 +20,7 @@
   </div>
 
   <%= render "/layouts/steps", steps: ["Setup Client", "Create Project", "Add Phases",
-                      "Add Steps", "Add Site Visits"].freeze %>
+                      "Add Steps", "Add Site Visits"].freeze if policy(project).new? %>
 
   <% if params[:display] == "grid" || (params[:display].blank? && cookies[:display] == "grid") %>
     <% cookies[:display] = "grid" %> 

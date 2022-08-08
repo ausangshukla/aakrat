@@ -14,6 +14,14 @@
                Url
             </td>
             <td>
+               <%= image_tag @company.logo.url if @company.logo.present? %>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               Url
+            </td>
+            <td>
                <%= @company.url if @company.url.present? %>
             </td>
          </tr>
