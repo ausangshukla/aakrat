@@ -16,7 +16,8 @@ class NotesController < ApplicationController
   def new
     @note = Note.new(note_params)
     @note.user_id = current_user.id
-    @note.company_id = @note.owner.company_id
+    @note.project_id = @note.owner.project_id if @note.owner
+    @note.company_id = @note.project.company_id if @note.project
     authorize @note
   end
 
@@ -27,7 +28,8 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     @note.user_id = current_user.id
-    @note.company_id = @note.owner.company_id
+    @note.project_id = @note.owner.project_id if @note.owner
+    @note.company_id = @note.project.company_id if @note.project
     authorize @note
 
     respond_to do |format|
@@ -75,6 +77,7 @@ class NotesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def note_params
-    params.require(:note).permit(:user_id, :company_id, :owner_id, :owner_type, :details, attachments: [])
+    params.require(:note).permit(:user_id, :company_id, :project_id, :owner_id,
+                                 :owner_type, :details, attachments: [])
   end
 end

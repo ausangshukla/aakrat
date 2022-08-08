@@ -2,8 +2,13 @@
 
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Notes</h1>
-    <%= link_to "New Note" , new_note_path("note[owner_id]": owner.id, "note[owner_type]": owner.class.name), {class: "btn btn-primary" } if owner %>
+    <%= link_to "New Note" , new_note_path("note[owner_id]": owner.id, "note[owner_type]": owner.class.name, "note[project_id]": owner.project_id,), {class: "btn btn-primary" } if owner %>
+
+    <% project ||= nil %>
+    <%= link_to "New Note" , new_note_path("note[project_id]": project.id,), {class: "btn btn-primary" } if project %>
   </div>
+
+
 
   <div class="table-responsive">
 

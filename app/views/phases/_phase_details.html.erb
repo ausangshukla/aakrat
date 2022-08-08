@@ -45,7 +45,7 @@
         <% if policy(@phase).update? || policy(@phase).permissions&.read_note? %>
             <div id="notes-tab" class="tab-pane fade">
                 <div id="notes" class="associated_entity">
-                    <%= render "/notes/index", notes: phase.notes.with_all_rich_text, owner: phase %>
+                    <%= render "/notes/index", notes: policy_scope(phase.notes.with_all_rich_text), owner: phase %>
                 </div>
             </div>
         <% end %>

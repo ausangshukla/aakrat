@@ -34,7 +34,7 @@
 
             <div id="notes-tab" class="tab-pane fade">
                 <div id="notes" class="associated_entity">
-                    <%= render "/notes/index" , notes: step.notes %>
+                    <%= render "/notes/index" , notes: policy_scope(step.notes), owner: step %>
                 </div>
             </div>
 

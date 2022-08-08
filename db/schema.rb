@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_03_160659) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_08_112855) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -204,7 +204,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_160659) do
     t.string "owner_type", limit: 30
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "project_id", null: false
     t.index ["company_id"], name: "index_notes_on_company_id"
+    t.index ["project_id"], name: "index_notes_on_project_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
@@ -475,6 +477,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_160659) do
   add_foreign_key "materials", "projects"
   add_foreign_key "materials", "users"
   add_foreign_key "notes", "companies"
+  add_foreign_key "notes", "projects"
   add_foreign_key "notes", "users"
   add_foreign_key "payments", "companies"
   add_foreign_key "payments", "phases"

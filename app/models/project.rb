@@ -14,7 +14,7 @@ class Project < ApplicationRecord
   has_many :attachments, dependent: :destroy
   has_many :materials, dependent: :destroy
 
-  has_many :notes, as: :owner, dependent: :destroy
+  has_many :notes, dependent: :destroy
   has_rich_text :details
   has_many_attached :profile_pics, service: :amazon, dependent: :destroy
 
