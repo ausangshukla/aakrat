@@ -460,6 +460,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    ransack (3.2.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     rbtree (0.4.5)
     redis (4.6.0)
     regexp_parser (2.3.0)
@@ -580,6 +584,10 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
     uniform_notifier (1.16.0)
+    view_component (2.64.0)
+      activesupport (>= 5.0.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -668,6 +676,7 @@ DEPENDENCIES
   rack-attack
   rails (~> 7.0.2.4)
   rails-erd
+  ransack
   redis (~> 4.0)
   rolify
   roo
@@ -685,6 +694,7 @@ DEPENDENCIES
   thinking-sphinx (~> 5.4)
   turbo-rails
   tzinfo-data
+  view_component
   web-console
   webdrivers
   whenever

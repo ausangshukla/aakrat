@@ -50,11 +50,13 @@
     </div>
   <% end %>
 
+  <% if current_user && current_user.has_cached_role?(:team_lead) %>
     <div class="form-group" >
       <%= form.label :role_ids, "Roles" %>
       <%= form.select :role_ids, Role.where("name <> 'Super'").all.map{|r|[r.name.humanize, r.id]}, {include_blank: false, include_hidden: false}, 
           class: "form-control select2", multiple: "multiple"  %>
     </div>
+  <% end %>
 
 
   <%= form.text_field :company_id, class: "form-control", hidden: true %>

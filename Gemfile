@@ -83,6 +83,8 @@ gem 'roo'
 
 gem 'client_side_validations'
 gem 'rack-attack'
+gem 'ransack'
+gem "view_component"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

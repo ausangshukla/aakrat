@@ -7,7 +7,6 @@
     <%= user.last_name %>
   </td>
 
-
   <td>
     <%= user.roles.collect(&:name).map(&:humanize ).join(", ") %>
   </td>
@@ -15,5 +14,10 @@
   <td>
     <%= user.company&.name %>
   </td>
+
+  <td>
+    <%= display_boolean user.confirmed? %>
+  </td>
+  
 
 </tr>

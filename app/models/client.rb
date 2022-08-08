@@ -14,6 +14,8 @@ class Client < ApplicationRecord
   scope :contractors, -> { where(user_type: "Contractor") }
   scope :clients, -> { where(user_type: "Client") }
 
+  validates :email, uniqueness: { scope: :company_id, message: "Client with email already present" }
+
   before_validation :set_user
   def set_user
     self.user = User.where(email:).first
