@@ -19,7 +19,31 @@
             <%= render "/steps/quick_entry", step: step %>
         </div>
     <% end %>
+
+<% elsif current_user.has_cached_role?(:team_lead) %>
+        <%= search_form_for @q, class: "form-inline" do |f| %>
+
+            <%= f.label :name_cont %>
+            <%= f.search_field :name_cont, class: "form-control", placeholder: "Name like" %>
+        
+            <%= f.label :start_date_lteq %>
+            <%= f.date_field :start_date_lteq, class: "form-control", placeholder: "Start Date <" %>
+
+            <%= f.label :completed %>
+            <%= f.check_box :completed_eq, class: "form-control form-checkbox", placeholder: "Start Date <" %>
+
+            <%= f.label :assigned_to, "Assigned To" %>
+            <% 
+                assigned = current_user.company.users.map{|u| [u.full_name, u.id]}  
+            %>
+            <%= f.select :assigned_to_id_eq, assigned, {include_blank: true}, 
+                class: "form-control", placeholder: "Start Date <" %>
+
+        <%= f.submit "Filter", {class: "btn btn-primary"}%>
+
+        <% end %>
 <% end %>
+
 
 <% show_project_phase ||= params[:show_project_phase] %>
 <div class="table-responsive">
@@ -56,11 +80,9 @@
                 <th>
                     Status
                 </th>
-                <% if @phase && policy(@phase.project).action? %>
-                    <th>
-                        Assigned
-                    </th>
-                <% end %>
+                <th>
+                    Assigned
+                </th>
 
                 <th>
                     Docs

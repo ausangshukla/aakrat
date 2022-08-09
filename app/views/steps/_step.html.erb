@@ -46,14 +46,12 @@
     <%= step.status %>    
   </td>
 
-  <% if policy(step.project).action? %>
-    <td>
-      <%= step.assigned_to.full_name %>
-    </td>
-  <% end %>
+  <td>
+    <%= step.assigned_to.full_name %>
+  </td>
   
   <td>
-    <% step.client_attachments.joins(:step).visible_to_client.each do |attachment| %>
+    <% step.client_attachments.each do |attachment| %>
       <%= render "/layouts/attachments", attachments: attachment.attachments, allow_delete: "No" %>
     <% end %>
   </td>

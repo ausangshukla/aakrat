@@ -21,6 +21,8 @@ Rails/I18nLocaleTexts:
   Enabled: false
 Style/GuardClause:
   Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
 
 AllCops:
   # DisabledByDefault: true

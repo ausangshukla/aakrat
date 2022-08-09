@@ -88,7 +88,7 @@ h1 {
 }
 
 .form-checkbox {
-  width: 5% !important;
+  width: 2% !important;
 }
 
 .btn {
@@ -426,3 +426,18 @@ table {
   max-width: 100px;
   max-height: 100px;
 }
+
+
+
+/* Add some margins for each label */
+.form-inline label {
+  margin: 5px 5px 5px 0px;
+}
+
+/* Style the input fields */
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 5px 5px 5px;
+  padding: 10px;
+}
+
