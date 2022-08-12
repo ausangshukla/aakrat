@@ -15,6 +15,8 @@ class UserDashboard < Administrate::BaseDashboard
     last_name: Field::String,
     email: Field::String,
     remember_created_at: Field::DateTime,
+    password: Field::String.with_options(searchable: false),
+    password_confirmation: Field::String.with_options(searchable: false),
     phone: Field::String,
     active: Field::Boolean,
     confirmed_at: Field::DateTime,
@@ -61,6 +63,8 @@ class UserDashboard < Administrate::BaseDashboard
     first_name
     last_name
     email
+    password
+    password_confirmation
     phone
     active
     accept_terms

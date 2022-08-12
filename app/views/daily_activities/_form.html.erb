@@ -36,11 +36,14 @@
     <%= form.label :status %>
     <%= form.select :status, ["Completed", "In Progress", "Not Started"], {}, class: "form-control"  %>
   </div>
-
-  <div class="form-group">
-    <%= form.label :cost %>
-    <%= form.text_field :cost, class: "form-control"  %>
-  </div>
+  
+  <% if daily_activity.step.unit_cost_cents > 0 %>
+    <div class="form-group">
+      <%= form.label :quantity, "Units Completed Today" %>
+      <%= form.number_field :quantity, class: "form-control"  %>
+      <small class="text-muted"> <%= daily_activity.step.units %> @ <%= money_to_currency daily_activity.step.unit_cost %> </small>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <%= form.label :details %>

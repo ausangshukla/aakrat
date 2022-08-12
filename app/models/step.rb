@@ -3,6 +3,7 @@ class Step < ApplicationRecord
   ThinkingSphinx::Callbacks.append(self, behaviours: [:real_time])
 
   STATUS = ["Not Started", "In Progress", "Completed", "Halted"].freeze
+  UNITS =  ["Sq Cm", "Sq Mt", "Cu Mt"].freeze
 
   belongs_to :project
   belongs_to :company
@@ -24,7 +25,7 @@ class Step < ApplicationRecord
 
   scope :visible_to_client, -> { where(visible_to_client: true) }
 
-  monetize :cost_cents, with_currency: ->(i) { i.project.currency }
+  monetize :cost_cents, :estimated_cost_cents, :unit_cost_cents, with_currency: ->(i) { i.project.currency }
 
   before_save :set_end_date
 
@@ -44,8 +45,13 @@ class Step < ApplicationRecord
                   column_name: 'total_days',
                   delta_column: 'days'
 
+  before_save :set_estimated_cost
   after_update ->(_s) { StepMailer.with(step_id: id).notify_update.deliver_later if project.status == "In Progress" }
   after_commit ->(s) { PhaseCompletedJob.perform_later(s.phase_id) }
+
+  def set_estimated_cost
+    self.estimated_cost_cents = quantity * unit_cost_cents
+  end
 
   def set_end_date
     self.end_date = start_date + days.days

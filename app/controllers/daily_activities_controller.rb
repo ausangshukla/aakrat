@@ -74,6 +74,6 @@ class DailyActivitiesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def daily_activity_params
     params.require(:daily_activity).permit(:user_id, :company_id, :project_id, :step_id,
-                                           :on_date, :title, :details, :status, :cost)
+                                           :on_date, :title, :details, :status, :cost, :quantity)
   end
 end

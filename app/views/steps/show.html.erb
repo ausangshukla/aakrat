@@ -80,9 +80,51 @@
       </td>
     </tr>
 
-    <tr>
+    <tr class="collapse multi-collapse">
+      <td colspan="2" class="bg-primary"></td>
+    </tr>
+
+    <tr class="collapse multi-collapse">
       <td>
-        Cost
+        Total Units
+      </td>
+      <td>
+        <%=  @step.quantity %>, <%= @step.units %>
+      </td>
+    </tr>
+
+    <tr class="collapse multi-collapse">
+      <td>
+        Unit Cost
+      </td>
+      <td>
+        <%= money_to_currency @step.unit_cost, params %>
+      </td>
+    </tr>
+
+    <tr class="collapse multi-collapse">
+      <td>
+        Units
+      </td>
+      <td>
+        <%= @step.units %>
+      </td>
+    </tr>
+
+
+    <tr class="collapse multi-collapse">
+      <td>
+        Estimated Cost
+      </td>
+      <td>
+        <%= money_to_currency @step.estimated_cost, params %>
+      </td>
+    </tr>
+
+
+    <tr class="collapse multi-collapse">
+      <td>
+        Cost From Daily Activity
       </td>
       <td>
         <%= money_to_currency @step.cost, params %>

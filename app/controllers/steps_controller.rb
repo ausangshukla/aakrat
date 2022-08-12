@@ -112,6 +112,7 @@ class StepsController < ApplicationController
   def step_params
     params.require(:step).permit(:name, :start_date, :end_date, :days, :status, :project_id,
                                  :phase_id, :assigned_to_id, :visible_to_client, :completed,
+                                 :quantity, :unit_cost, :cost, :units,
                                  :position, :details, attachments: [])
   end
 end
